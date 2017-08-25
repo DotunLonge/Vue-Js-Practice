@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> </head>
+
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+
+    <body>
+
+        <div id="app">
+            <h1 v-text="text"></h1>
+            <h2 v-html="html"></h2>
+            <h3 v-show="viewed">You have viewed this page</h3>
+            <h4 v-if="placeIn">Literally adds/removes me from code as observed from the browser inspector</h4>
+
+            <h5 v-if="viewed == placeIn"> conditions inside html, crazy right?</h5>
+            <h5 v-else> I only show up if the if condition aint true, bro</h5>
+
+            <h1 v-pre>{{text}}</h1>
+            <h1 v-once>{{once}}</h1>
+
+            <h2 v-cloak>
+                {{sense}}
+            </h2>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+
+        <script>
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    once: "only renders once, you cant change moi",
+                    text: "i'm vueing up",
+                    html: "<strong>Thick</strong>",
+                    viewed: true,
+                    placeIn: true,
+                    sense: "sense to hide the braces from showing"
+                }
+            })
+        </script>
+
+    </body>
+
+</html>
