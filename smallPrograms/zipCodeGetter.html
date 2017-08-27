@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>Cool Beans</title>
+
+        <style>
+            body,
+            html {
+                height: 100%;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                background: black;
+                position: relative;
+                color: #444;
+            }
+            
+            h1 {
+                text-align: center;
+                margin: 20px 0;
+            }
+            
+            form {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                overflow: auto;
+            }
+            
+            input {
+                background: white;
+                height: 50px;
+                text-align: center;
+                color: #333;
+                margin: 10px auto;
+                width: 90%;
+                display: block;
+                border: 1px solid lightblue;
+                border-radius: 2.5px;
+            }
+            
+            .form-body {
+                background: white;
+                position: absolute;
+                top: 10%;
+                left: 5%;
+                right: 5%;
+                bottom: 20%;
+            }
+            
+            .button {
+                background: lightgreen;
+                color: white;
+                border: none;
+                font-size: 14px;
+            }
+            
+            .no-border {
+                border: none;
+                text-align: left;
+                padding-left: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="wrapper" id="app">
+            <div class="form-body">
+                <h1>Fill Out The Form</h1>
+                <form action="">
+                    <input type="text" placeholder="enter a zip code here ">
+                    <input type="text" class="no-border" placeholder="Addres is">
+                    <input type="text" placeholder="enter a zip code here ">
+                    <input type="text" class="no-border" placeholder="Addres is">
+                    <input type="submit" class="button">
+                </form>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+
+        <script>
+            var app = new Vue({
+                el: "#app",
+                data: {
+
+                }
+
+            })
+        </script>
+    </body>
+
+</html>
