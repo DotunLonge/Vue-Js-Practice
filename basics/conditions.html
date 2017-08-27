@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+
+    <body>
+        <div id="app">
+            <h1 v-bind:title="title">{{message}}</h1>
+            <ul>
+                <li style="list-style-type: none" v-for="todo in todos">{{todo.text}}</li>
+            </ul>
+
+
+            <ul>
+                <li style="list-style-type: none" v-for="count in counts"> {{count}}</li>
+            </ul>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+
+        <script>
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    title: "i wrote this",
+                    message: `a deep message from zion, vision recieved on ${new Date}`,
+                    todos: [{
+                        text: "go get money"
+                    }, {
+                        text: "go get more money"
+                    }, {
+                        text: "go get stupid money"
+                    }],
+                    counts: 10
+                }
+            })
+        </script>
+    </body>
+
+</html>
