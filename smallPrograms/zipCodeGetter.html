@@ -46,12 +46,19 @@
                 border-radius: 2.5px;
             }
             
+            span {
+                display: block !important;
+                text-align: center !important;
+                margin: auto;
+                padding: 40px 0;
+            }
+            
             .form-body {
                 background: white;
                 position: absolute;
                 top: 10%;
-                left: 5%;
-                right: 5%;
+                left: 15%;
+                right: 15%;
                 bottom: 20%;
             }
             
@@ -64,7 +71,6 @@
             
             .no-border {
                 border: none;
-                text-align: left;
                 padding-left: 20px;
             }
         </style>
@@ -75,11 +81,11 @@
             <div class="form-body">
                 <h1>Fill Out The Form</h1>
                 <form action="">
-                    <input type="text" placeholder="enter a zip code here ">
-                    <input type="text" class="no-border" placeholder="Addres is">
-                    <input type="text" placeholder="enter a zip code here ">
-                    <input type="text" class="no-border" placeholder="Addres is">
-                    <input type="submit" class="button">
+                    <input type="text" placeholder="enter a zip code here" v-model="firstZipCode">
+                    <span type="text" class="no-border" placeholder="Addres is" v-text="firstCity"></span>
+                    <input type="text" placeholder="enter a zip code here " v-model="secondZipCode">
+                    <span type="text" class="no-border" placeholder="Addres is" v-text="secondCity">
+                    </span>
                 </form>
             </div>
         </div>
@@ -92,9 +98,48 @@
             var app = new Vue({
                 el: "#app",
                 data: {
+                    firstZipCode: "",
+                    secondZipCode: "",
+                    firstCity: "City address shows up here for the first zipcode",
+                    secondCity: "City address show sup here for the second zipcode"
+                },
+                watch: {
+                    firstZipCode: function() {
+                        this.firstCity = '';
+                        if (this.firstZipCode.length == 5) {
+                            this.preFirst();
+                        }
+                    },
 
+                    secondZipCode: function() {
+                        this.secondCity = '';
+                        if (this.secondZipCode.length == 5) {
+                            this.preSecond();
+                        }
+                    }
+                },
+
+                methods: {
+                    preFirst: _.debounce(function() {
+                        this.firstCity = " looking up..";
+                        let url = `http://www.ziptasticapi.com/${this.firstZipCode}`
+
+                        axios.get(url).then(function(response) {
+                            app.firstCity = response.data.city + ", " + response.data.state;
+                            console.log(response);
+                        })
+                    }, 500),
+
+                    preSecond: _.debounce(function() {
+                        this.secondCity = " looking up..";
+                        let url = `http://www.ziptasticapi.com/${this.secondZipCode}`
+
+                        axios.get(url).then(function(response) {
+                            app.secondCity = response.data.city + ", " + response.data.state;
+                            console.log(response);
+                        })
+                    }, 500)
                 }
-
             })
         </script>
     </body>
